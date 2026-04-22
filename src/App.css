@@ -1,10 +1,14 @@
-/* App.css */
+/* =========================================
+   1. CSS VARIABLES & RESET
+   ========================================= */
 :root {
-  --primary: #0284c7;
+  --primary: #0284c7;     /* Sky Blue */
   --bg-glass: rgba(255, 255, 255, 0.88);
   --text-main: #0f172a;
   --text-muted: #475569;
   --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Playful Accent Colors */
   --accent-yellow: #fde047;
   --accent-purple: #c084fc;
   --accent-coral: #fb7185;
@@ -17,6 +21,7 @@
 }
 
 body {
+  /* Miyazaki Anime Style Background */
   background-image: url('http://googleusercontent.com/image_collection/image_retrieval/10183585103198483269');
   background-attachment: fixed;
   background-size: cover;
@@ -34,6 +39,49 @@ body {
   padding-bottom: 100px;
 }
 
+/* =========================================
+   2. PLAYFUL ANIMATIONS & BACKGROUND
+   ========================================= */
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60%, 100% { transform: rotate(0deg); }
+}
+.wave-emoji { 
+  display: inline-block; 
+  animation: wave 2.5s infinite; 
+  transform-origin: 70% 70%; 
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+  50% { transform: translateY(-20px) translateX(10px) rotate(10deg); }
+}
+.floating-bg { 
+  position: fixed; 
+  top: 0; left: 0; 
+  width: 100%; height: 100%; 
+  pointer-events: none; 
+  z-index: -1; 
+  overflow: hidden; 
+}
+.shape { 
+  position: absolute; 
+  filter: blur(8px); 
+  opacity: 0.6; 
+  animation: float 6s ease-in-out infinite; 
+}
+.shape.circle-1 { width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-yellow), #fef08a); top: 10%; left: 5%; animation-delay: 0s; }
+.shape.circle-2 { width: 300px; height: 300px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-purple), #e9d5ff); top: 50%; right: -5%; animation-delay: 2s; }
+.shape.circle-3 { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-coral), #fecdd3); bottom: 10%; left: 20%; animation-delay: 4s; }
+
+/* =========================================
+   3. NAVIGATION
+   ========================================= */
 nav {
   position: fixed;
   top: 0;
@@ -70,6 +118,9 @@ nav {
   color: var(--primary);
 }
 
+/* =========================================
+   4. SLIDE & LAYOUT COMPONENTS
+   ========================================= */
 .slide-container {
   width: 1200px;
   max-width: 90vw;
@@ -105,7 +156,7 @@ nav {
 .hero-slide {
   text-align: center;
   align-items: center;
-  margin-top: 140px;
+  margin-top: 140px; 
 }
 
 .hero-slide h1 {
@@ -128,16 +179,29 @@ nav {
   align-items: center;
 }
 
+/* Tags & Cards */
+.tag { padding: 8px 15px; border-radius: 12px; font-weight: 600; font-size: 14px; transition: var(--transition); display: inline-flex; align-items: center; gap: 6px; }
+.tag:hover { transform: scale(1.05) translateY(-2px); }
+.tag-blue { background: #e0f2fe; color: #0369a1; }
+.tag-purple { background: #f3e8ff; color: #7e22ce; }
+.tag-yellow { background: #fef3c7; color: #b45309; }
+.tag-green { background: #dcfce7; color: #15803d; }
+.tag-coral { background: #ffe4e6; color: #be123c; }
+
+.about-card { background: #f8fafc; padding: 25px; border-radius: 20px; transition: transform 0.3s; cursor: default; }
+.about-card:hover { transform: scale(1.05); }
+
+/* Experience */
 .exp-item {
   margin-bottom: 40px;
   padding-left: 20px;
   border-left: 2px solid #e2e8f0;
 }
-
 .exp-item h3 { font-size: 20px; color: var(--primary); }
 .exp-item span { font-size: 14px; color: #94a3b8; font-weight: 600; }
 .exp-item p { margin-top: 10px; color: var(--text-muted); font-size: 16px; }
 
+/* Projects Grid */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -183,10 +247,12 @@ nav {
 .project-info h3 { font-size: 18px; margin-bottom: 8px; }
 .project-info p { font-size: 14px; color: var(--text-muted); }
 
+/* Table */
 table { width: 100%; border-collapse: collapse; }
 th, td { padding: 25px; text-align: left; border-bottom: 1px solid #e2e8f0; }
 th { font-weight: 700; color: var(--primary); text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
 
+/* Buttons */
 .btn {
   background: var(--primary);
   color: white;
@@ -196,6 +262,7 @@ th { font-weight: 700; color: var(--primary); text-transform: uppercase; font-si
   font-weight: 700;
   display: inline-block;
   transition: var(--transition);
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -204,37 +271,13 @@ th { font-weight: 700; color: var(--primary); text-transform: uppercase; font-si
   transform: translateY(-3px) scale(1.05);
 }
 
-/* Animations */
-@keyframes wave {
-  0% { transform: rotate(0deg); }
-  10% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  30% { transform: rotate(14deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
-  60%, 100% { transform: rotate(0deg); }
-}
-.wave-emoji { display: inline-block; animation: wave 2.5s infinite; transform-origin: 70% 70%; }
+/* Contact Footer */
+.contact-label { font-weight: 700; font-size: 12px; color: var(--primary); text-transform: uppercase; }
+.contact-value { font-size: 22px; }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
-  50% { transform: translateY(-20px) translateX(10px) rotate(10deg); }
-}
-.floating-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden; }
-.shape { position: absolute; filter: blur(8px); opacity: 0.6; animation: float 6s ease-in-out infinite; }
-.shape.circle-1 { width: 150px; height: 150px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-yellow), #fef08a); top: 10%; left: 5%; animation-delay: 0s; }
-.shape.circle-2 { width: 300px; height: 300px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-purple), #e9d5ff); top: 50%; right: -5%; animation-delay: 2s; }
-.shape.circle-3 { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-coral), #fecdd3); bottom: 10%; left: 20%; animation-delay: 4s; }
-
-.tag { padding: 8px 15px; border-radius: 12px; font-weight: 600; font-size: 14px; transition: var(--transition); display: inline-flex; align-items: center; gap: 6px; }
-.tag:hover { transform: scale(1.05) translateY(-2px); }
-.tag-blue { background: #e0f2fe; color: #0369a1; }
-.tag-purple { background: #f3e8ff; color: #7e22ce; }
-.tag-yellow { background: #fef3c7; color: #b45309; }
-.tag-green { background: #dcfce7; color: #15803d; }
-.tag-coral { background: #ffe4e6; color: #be123c; }
-
-/* Modals */
+/* =========================================
+   5. MODALS & LIGHTBOX (PROJECT DETAILS)
+   ========================================= */
 .modal {
   display: flex;
   justify-content: center;
@@ -247,6 +290,7 @@ th { font-weight: 700; color: var(--primary); text-transform: uppercase; font-si
   overflow-y: auto;
   padding: 40px 20px;
 }
+
 .modal-container {
   background: white;
   width: 100%;
@@ -257,10 +301,12 @@ th { font-weight: 700; color: var(--primary); text-transform: uppercase; font-si
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   animation: modalFadeIn 0.3s ease-out forwards;
 }
+
 @keyframes modalFadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
 .modal-header { padding: 40px 50px; border-bottom: 1px solid #e2e8f0; position: relative; }
 .modal-close { position: absolute; top: 30px; right: 30px; font-size: 24px; color: var(--text-muted); cursor: pointer; background: none; border: none; transition: var(--transition); }
 .modal-close:hover { color: var(--primary); transform: rotate(90deg); }
@@ -272,26 +318,62 @@ th { font-weight: 700; color: var(--primary); text-transform: uppercase; font-si
 .modal-images { display: flex; flex-direction: column; gap: 40px; }
 .modal-images img { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
 
+/* UX Narrative Sections */
 .ux-section { margin-bottom: 40px; }
 .ux-section-title { font-size: 22px; font-weight: 700; color: var(--text-main); margin-bottom: 15px; border-left: 4px solid var(--primary); padding-left: 15px; }
 .ux-text { font-size: 15px; color: var(--text-muted); margin-bottom: 30px; line-height: 1.8; max-width: 900px; }
 
-.scrollable-img-wrapper { width: 100%; max-height: 600px; overflow-y: auto; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.08); background: transparent; }
+/* Scrollable Image Wrappers */
+.scrollable-img-wrapper { 
+  width: 100%; 
+  max-height: 600px; 
+  overflow-y: auto; 
+  border-radius: 12px; 
+  border: 1px solid #e2e8f0; 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+  background: transparent; 
+}
 .scrollable-img-wrapper::-webkit-scrollbar { width: 6px; }
 .scrollable-img-wrapper::-webkit-scrollbar-track { background: transparent; }
 .scrollable-img-wrapper::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
 .scrollable-img-wrapper::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 .scrollable-img-wrapper img { border-radius: 0; border: none; box-shadow: none; display: block; }
 
-.image-group-asym { display: grid; grid-template-columns: 3fr 1fr; gap: 40px; align-items: start; }
+/* Image Grids for Modal */
 .image-group { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-@media (max-width: 768px) {
-  .image-group, .image-group-asym { grid-template-columns: 1fr; }
+.image-group-asym { display: grid; grid-template-columns: 3fr 1fr; gap: 40px; align-items: start; }
+
+/* NEW: Mira Mobile 3-Column Grid */
+.mira-mobile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
-.about-card {
-  background: #f8fafc; padding: 25px; border-radius: 20px; transition: transform 0.3s; cursor: default;
+/* NEW: iPhone X Ratio Wrapper */
+.iphone-x-wrapper {
+  width: 100%;
+  aspect-ratio: 9 / 19.5;
+  overflow-y: auto;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  background: #fff;
 }
-.about-card:hover {
-  transform: scale(1.05);
+.iphone-x-wrapper::-webkit-scrollbar { width: 0; /* 隐藏手机壳内的滚动条，更逼真 */ }
+.iphone-x-wrapper img {
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  display: block;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .slide-container { padding: 40px; width: 95vw; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .image-group, .image-group-asym { grid-template-columns: 1fr; }
+  .mira-mobile-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-slide h1 { font-size: 56px; }
 }
